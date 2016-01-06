@@ -330,8 +330,8 @@ type dnsDomainsResp struct {
 	DNSDomains []*DNSDomain `json:"domains"`
 }
 
-// GetDNSDomain returns the DNS information of a single domain
-func (c *Client) GetDNSDomain(ctx context.Context, domainID DomainID) ([]*DNSDomain, error) {
+// GetDNSDomains returns the DNSDomains of a single domain
+func (c *Client) GetDNSDomains(ctx context.Context, domainID DomainID) ([]*DNSDomain, error) {
 	if domainID == "" {
 		return nil, errors.New("empty domainID")
 	}
