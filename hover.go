@@ -63,10 +63,11 @@ func Login(ctx context.Context, hc *http.Client, username, password string) (*ht
 	v.Set("password", password)
 
 	r, err := ctxhttp.Get(ctx, hc, fmt.Sprintf("%s/login?%s", defaultURL, v.Encode()))
-
 	if err != nil {
 		return nil, err
 	}
+	defer r.Body.Close()
+
 	if r.StatusCode != 200 {
 		return nil, InvalidLogin(fmt.Sprintf("login HTTP status code was %d", r.StatusCode))
 	}
